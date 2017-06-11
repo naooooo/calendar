@@ -73,5 +73,6 @@
         android:text="@string/sbutton"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="save"/>
 </android.support.constraint.ConstraintLayout>
