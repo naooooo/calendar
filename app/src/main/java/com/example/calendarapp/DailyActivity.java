@@ -11,10 +11,13 @@ import android.widget.TimePicker;
 
 public class DailyActivity extends AppCompatActivity {
     int year,month,day;
+    private Calendar cal;
+    SetOfCal soc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
+        soc=new SetOfCal();
         Intent intent = getIntent();
         day=intent.getIntExtra("DAY",0);
         month=intent.getIntExtra("MONTH",0);
@@ -27,6 +30,11 @@ public class DailyActivity extends AppCompatActivity {
         //layout.addView(textView);
     }
     public void goToMain(View view){
+        SetOfCal calendar=(SetOfCal)SaveData.load(this);
+        TextView textView=(TextView)findViewById(R.id.textView6);
+        textView.setTextSize(30);
+        //textView.setText(""+calendar.getSh());
+        //System.out.print("saved");
         Intent intent=new Intent(this,MainActivity.class);
         startActivity(intent);
     }
@@ -47,8 +55,10 @@ public class DailyActivity extends AppCompatActivity {
             finishM = timePicker2.getCurrentMinute();
         }
         Calendar calendar=new Calendar(year,month,day,startH,startM,finishH,finishM);
+        //soc.update(calendar);
+        //SaveData.save(this,soc);
         Intent intent=new Intent(this,MainActivity.class);
-        intent.putExtra("Cal",calendar);
+        intent.putExtra("cal",calendar);
         startActivity(intent);
     }
 }
