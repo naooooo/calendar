@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     public void receivedData(View view){
         Intent intent=getIntent();
         Calendar cal = (Calendar) intent.getSerializableExtra("Cal");
-        System.out.println("" + cal.getYear() + "年" + cal.getMonth() + "月" + cal.getDay() + "日" + cal.getSh() + "：" + cal.getSm() + "〜" + cal.getFh() + "：" + cal.getFm());
+        if(cal!=null) {
+            System.out.println("" + cal.getYear() + "年" + cal.getMonth() + "月" + cal.getDay() + "日" + cal.getSh() + "：" + cal.getSm() + "〜" + cal.getFh() + "：" + cal.getFm());
+        }
     }
     public void cal(View view) {
 
