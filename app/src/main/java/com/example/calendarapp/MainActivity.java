@@ -11,6 +11,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -31,17 +32,30 @@ public class MainActivity extends AppCompatActivity {
             sp.edit().putInt("one", 1).commit();
         }*/
 
-        //soc=new SetOfCal();
+        soc=new SetOfCal();
         soc=SaveData.load(this);
-        if(soc==null)soc=new SetOfCal();
-        System.out.println("aaaaaaaaaaaaaaaaaaa");
+
+        //初期化
+        //soc.clear();SaveData.save(this,soc);
+
+        //if(soc==null)soc=new SetOfCal();
+        Intent intent=getIntent();
+        Calendar cal=(Calendar)intent.getSerializableExtra("cal");
+        System.out.println(soc.cals);
+        soc.update(cal);
+        SaveData.save(this,soc);
         TextView textView=(TextView)findViewById(R.id.calView);
         textView.setText("");
-        for (int i = 0 ; i < soc.cals.size() ; i++){
-            String country = soc.cals.get(i).toString();
-            textView.append(country+"\n");
-            textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-            System.out.println(country);
+        System.out.println(soc.cals);
+        for (int i = soc.cals.size()-1;i>=0; i--){
+            //Calendar a=soc.cals.get(i);System.out.println("#####"+soc.cals.size());
+            //String s=a.toString();System.out.println(s);
+            if(soc.cals.get(i)!=null) {
+                String country = soc.cals.get(i).toString();
+                textView.append(country + "\n");
+                textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+                System.out.println(country);
+            }
         }
         /*if(AppLaunchChecker.hasStartedFromLauncher(this)){
 
@@ -88,13 +102,29 @@ public class MainActivity extends AppCompatActivity {
         SaveData.save(this,soc);
         TextView textView=(TextView)findViewById(R.id.calView);
         textView.setText("");
-        for (int i = 0 ; i < soc.cals.size() ; i++){
-            String country = soc.cals.get(i).toString();
-            textView.append(country+"\n");
-            System.out.println(country);
+        for (int i = soc.cals.size()-1;i>=0 ; i--){
+            if(soc.cals.get(i)!=null) {
+                String country = soc.cals.get(i).toString();
+                textView.append(country+"\n");
+                System.out.println(country);
+            }
         }
+        EditText et=(EditText)findViewById(R.id.editNumberText);
+        et.setText(" "+keisan());
+        et.setTextSize(30);
         /*DatePicker dp=(DatePicker)findViewById(R.id.datePickerSpinner);
         int year=dp.getYear();
         int month=dp.getMonth();*/
+    }
+    public int keisan(){
+        Model model=new Model();
+        model.setSoc(soc);
+
+        DatePicker dp=(DatePicker)findViewById(R.id.datePickerSpinner);
+        int year=dp.getYear();
+        int month=dp.getMonth()+1;
+        System.out.println(soc.cals);
+        return model.oneMonthSala(year,month);
+        //return 100;
     }
 }
