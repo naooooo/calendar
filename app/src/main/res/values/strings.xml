@@ -2,7 +2,7 @@
     <string name="app_name">Calendar App</string>
     <string name="message">の給料は</string>
     <string name="message2">円です</string>
-    <string name="setting">Setting</string>
+    <string name="setting">設定</string>
     <string name="message3">時給</string>
     <string name="message4">円/h</string>
     <string name="rbutton">back</string>
@@ -11,5 +11,6 @@
     <string name="date">2017年6月10日(土)</string>
     <string name="message5">開始時刻</string>
     <string name="message6">終了時刻</string>
-
+    <string name="goToDaily">予定を入力</string>
+    <string name="message7">計算する</string>
 </resources>
