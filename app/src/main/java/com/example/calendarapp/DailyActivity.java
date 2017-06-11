@@ -54,11 +54,13 @@ public class DailyActivity extends AppCompatActivity {
             finishH = timePicker2.getCurrentHour();
             finishM = timePicker2.getCurrentMinute();
         }
-        Calendar calendar=new Calendar(year,month,day,startH,startM,finishH,finishM);
-        //soc.update(calendar);
-        //SaveData.save(this,soc);
-        Intent intent=new Intent(this,MainActivity.class);
-        intent.putExtra("cal",calendar);
-        startActivity(intent);
+        if(startH<finishH||(startH==finishH&&startM<finishM)) {
+            Calendar calendar = new Calendar(year, month, day, startH, startM, finishH, finishM);
+            //soc.update(calendar);
+            //SaveData.save(this,soc);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("cal", calendar);
+            startActivity(intent);
+        }
     }
 }

@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
     public int keisan(){
         Model model=new Model();
         model.setSoc(soc);
+        SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
+        int z=sp.getInt("zikyuu",1000);
+        model.setZikyuu(z);
 
         DatePicker dp=(DatePicker)findViewById(R.id.datePickerSpinner);
         int year=dp.getYear();

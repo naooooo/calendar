@@ -1,12 +1,16 @@
 package com.example.calendarapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+
 /**
  * Created by takazawa on 2017/06/11.
  */
 
-public class Model {
+public class Model{
     SetOfCal soc;
-    int zikyuu=1000;
+    int zikyuu;
     int oneSala;
     public void setSoc(SetOfCal soc){this.soc=soc;}
     public int DaySala(int year,int month,int day){
@@ -29,5 +33,8 @@ public class Model {
             sum+=DaySala(year, month, i);
         }
         return sum;
+    }
+    public void setZikyuu(int z){
+        zikyuu=z;
     }
 }
