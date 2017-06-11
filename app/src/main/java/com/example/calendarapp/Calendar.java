@@ -51,7 +51,6 @@ public class Calendar implements Serializable {
         int year1=((Calendar)obj).getYear();
         int month1=((Calendar)obj).getMonth();
         int day1=((Calendar)obj).getDay();
-        System.out.println(this+"..."+obj);
         if(year==year1&&month==month1&&day==day1)return true;
         else return false;
     }
