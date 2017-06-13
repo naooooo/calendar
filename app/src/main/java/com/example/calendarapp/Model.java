@@ -1,8 +1,5 @@
 package com.example.calendarapp;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by takazawa on 2017/06/11.
@@ -11,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 public class Model{
     SetOfCal soc;
     int zikyuu;
-    int oneSala;
     public void setSoc(SetOfCal soc){this.soc=soc;}
     public int DaySala(int year,int month,int day){
         Calendar c=new Calendar(year,month,day,0,0,0,0);

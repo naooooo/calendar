@@ -1,7 +1,6 @@
 package com.example.calendarapp;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by takazawa on 2017/06/11.
@@ -55,6 +54,6 @@ public class Calendar implements Serializable {
         else return false;
     }
     public String toString(){
-        return ""+year+"年"+month+"月"+day+"日"+sh+"："+sm+"〜"+fh+"："+fm;
+        return String.format("%02d年%02d月%02d日 %02d:%02d〜%02d:%02d",year,month,day,sh,sm,fh,fm);
     }
 }
