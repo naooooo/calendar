@@ -33,8 +33,6 @@ public class DailyActivity extends AppCompatActivity {
         SetOfCal calendar=(SetOfCal)SaveData.load(this);
         TextView textView=(TextView)findViewById(R.id.textView6);
         textView.setTextSize(30);
-        //textView.setText(""+calendar.getSh());
-        //System.out.print("saved");
         Intent intent=new Intent(this,MainActivity.class);
         startActivity(intent);
     }
