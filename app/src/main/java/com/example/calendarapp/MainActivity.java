@@ -12,10 +12,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static com.example.calendarapp.R.id.datePicker;
 
 public class MainActivity extends AppCompatActivity {
-    Calendar cal;
     SetOfCal soc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +27,21 @@ public class MainActivity extends AppCompatActivity {
         //soc.clear();SaveData.save(this,soc);
 
         Intent intent=getIntent();
-        Calendar cal=(Calendar)intent.getSerializableExtra("cal");
-        System.out.println(soc.cals);
-        soc.update(cal);
-        SaveData.save(this,soc);
-        TextView textView=(TextView)findViewById(R.id.calView);
-        textView.setText("");
-        System.out.println(soc.cals);
-        for (int i = soc.cals.size()-1;i>=0; i--){
-            if(soc.cals.get(i)!=null) {
-                String country = soc.cals.get(i).toString();
-                textView.append(country + "\n");
-                textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-                System.out.println(country);
+        System.out.println("intent="+intent);
+        System.out.println("soc="+soc);
+        if(intent!=null&&soc!=null) {
+            Calendar cal = (Calendar) intent.getSerializableExtra("cal");
+            soc.update(cal);
+            SaveData.save(this, soc);
+            TextView textView = (TextView) findViewById(R.id.calView);
+            textView.setText("");
+            for (int i = soc.cals.size() - 1; i >= 0; i--) {
+                if (soc.cals.get(i) != null) {
+                    String country = soc.cals.get(i).toString();
+                    System.out.println(country);
+                    textView.append(country + "\n");
+                    textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+                }
             }
         }
         int day_id = Resources.getSystem().getIdentifier("day", "id", "android");
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         DatePicker dp=(DatePicker)findViewById(R.id.datePickerSpinner);
         int year=dp.getYear();
         int month=dp.getMonth()+1;
-        System.out.println(soc.cals);
         return model.oneMonthSala(year,month);
     }
 }

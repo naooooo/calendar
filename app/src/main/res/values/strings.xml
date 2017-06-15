@@ -13,4 +13,5 @@
     <string name="message6">終了時刻</string>
     <string name="goToDaily">予定を入力</string>
     <string name="message7">計算する</string>
+    <string name="title">シフト管理アプリ</string>
 </resources>
