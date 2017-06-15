@@ -14,21 +14,19 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    SetOfCal soc;
+    SetOfCal soc=new SetOfCal();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        soc=new SetOfCal();
-        soc=SaveData.load(this);
+        SetOfCal tmp=SaveData.load(this);
+        if(tmp!=null)soc=SaveData.load(this);
 
         //初期化
         //soc.clear();SaveData.save(this,soc);
 
         Intent intent=getIntent();
-        System.out.println("intent="+intent);
-        System.out.println("soc="+soc);
         if(intent!=null&&soc!=null) {
             Calendar cal = (Calendar) intent.getSerializableExtra("cal");
             soc.update(cal);
@@ -38,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
             for (int i = soc.cals.size() - 1; i >= 0; i--) {
                 if (soc.cals.get(i) != null) {
                     String country = soc.cals.get(i).toString();
-                    System.out.println(country);
                     textView.append(country + "\n");
                     textView.setMovementMethod(ScrollingMovementMethod.getInstance());
                 }
