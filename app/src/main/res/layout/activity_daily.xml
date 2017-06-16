@@ -96,4 +96,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+    <TextView
+        android:id="@+id/warnText"
+        android:layout_width="341dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="258dp"
+        android:layout_marginLeft="130dp"
+        android:background="@drawable/gray"
+        android:paddingLeft="10dp"
+        android:paddingTop="6dp"
+        android:text="@string/warning"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
