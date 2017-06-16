@@ -18,7 +18,6 @@ public class Model{
             int sm = cal.getSm();
             int fh = cal.getFh();
             int fm = cal.getFm();
-            System.out.println(cal);
             return ((fh - sh) * 60 + fm - sm) * zikyuu/60;
         }
         return 0;//バイトが入っていない

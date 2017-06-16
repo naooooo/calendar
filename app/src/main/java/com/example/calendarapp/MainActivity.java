@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SetOfCal tmp=SaveData.load(this);
-        if(tmp!=null)soc=SaveData.load(this);
+        if(tmp!=null)soc=tmp;
 
         //初期化
         //soc.clear();SaveData.save(this,soc);
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             for (int i = soc.cals.size() - 1; i >= 0; i--) {
                 if (soc.cals.get(i) != null) {
-                    String country = soc.cals.get(i).toString();
-                    textView.append(country + "\n");
+                    String c = soc.cals.get(i).toString();
+                    textView.append(c + "\n");
                     textView.setMovementMethod(ScrollingMovementMethod.getInstance());
                 }
             }
