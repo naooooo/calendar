@@ -10,12 +10,10 @@ import android.widget.TimePicker;
 
 public class DailyActivity extends AppCompatActivity {
     int year,month,day;
-    SetOfCal soc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
-        soc=new SetOfCal();
         Intent intent = getIntent();
         day=intent.getIntExtra("DAY",0);
         month=intent.getIntExtra("MONTH",0);

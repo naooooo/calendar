@@ -12,36 +12,33 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static com.example.calendarapp.R.id.datePicker;
 
 public class MainActivity extends AppCompatActivity {
-    Calendar cal;
-    SetOfCal soc;
+    private SetOfCal soc=new SetOfCal();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        soc=new SetOfCal();
-        soc=SaveData.load(this);
+        SetOfCal tmp=SaveData.load(this);
+        if(tmp!=null)soc=tmp;
 
         //初期化
         //soc.clear();SaveData.save(this,soc);
 
         Intent intent=getIntent();
-        Calendar cal=(Calendar)intent.getSerializableExtra("cal");
-        System.out.println(soc.cals);
-        soc.update(cal);
-        SaveData.save(this,soc);
-        TextView textView=(TextView)findViewById(R.id.calView);
-        textView.setText("");
-        System.out.println(soc.cals);
-        for (int i = soc.cals.size()-1;i>=0; i--){
-            if(soc.cals.get(i)!=null) {
-                String country = soc.cals.get(i).toString();
-                textView.append(country + "\n");
-                textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-                System.out.println(country);
+        if(intent!=null&&soc!=null) {
+            Calendar cal = (Calendar) intent.getSerializableExtra("cal");
+            soc.update(cal);
+            SaveData.save(this, soc);
+            TextView textView = (TextView) findViewById(R.id.calView);
+            textView.setText("");
+            for (int i = soc.cals.size() - 1; i >= 0; i--) {
+                if (soc.cals.get(i) != null) {
+                    String c = soc.cals.get(i).toString();
+                    textView.append(c + "\n");
+                    textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+                }
             }
         }
         int day_id = Resources.getSystem().getIdentifier("day", "id", "android");
@@ -66,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
     public void showCal(View view) {
         Intent intent=getIntent();
         Calendar cal=(Calendar)intent.getSerializableExtra("cal");
-        soc.update(cal);
-        SaveData.save(this,soc);
-        EditText et=(EditText)findViewById(R.id.editNumberText);
-        et.setText(" "+keisan());
-        et.setTextSize(30);
+        if(soc!=null) {
+            soc.update(cal);
+            SaveData.save(this, soc);
+            EditText et = (EditText) findViewById(R.id.editNumberText);
+            et.setText(" " + keisan());
+            et.setTextSize(30);
+        }
     }
-    public int keisan(){
+    private int keisan(){
         Model model=new Model();
         model.setSoc(soc);
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         DatePicker dp=(DatePicker)findViewById(R.id.datePickerSpinner);
         int year=dp.getYear();
         int month=dp.getMonth()+1;
-        System.out.println(soc.cals);
         return model.oneMonthSala(year,month);
     }
 }
