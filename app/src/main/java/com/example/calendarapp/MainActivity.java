@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    SetOfCal soc=new SetOfCal();;
+    private SetOfCal soc=new SetOfCal();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
     public void showCal(View view) {
         Intent intent=getIntent();
         Calendar cal=(Calendar)intent.getSerializableExtra("cal");
-        soc.update(cal);
-        SaveData.save(this,soc);
-        EditText et=(EditText)findViewById(R.id.editNumberText);
-        et.setText(" "+keisan());
-        et.setTextSize(30);
+        if(soc!=null) {
+            soc.update(cal);
+            SaveData.save(this, soc);
+            EditText et = (EditText) findViewById(R.id.editNumberText);
+            et.setText(" " + keisan());
+            et.setTextSize(30);
+        }
     }
-    public int keisan(){
+    private int keisan(){
         Model model=new Model();
         model.setSoc(soc);
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);

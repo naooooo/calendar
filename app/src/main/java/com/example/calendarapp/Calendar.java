@@ -39,13 +39,13 @@ public class Calendar implements Serializable {
     public int getFm(){
         return fm;
     }
-    public void setYear(){this.year=year;}
-    public void setMonth(){this.month=month;}
-    public void setDay(){this.day=day;}
-    public void setSh(){this.sh=sh;}
-    public void setSm(){this.sm=sm;}
-    public void setFh(){this.fh=fh;}
-    public void setFm(){this.fm=fm;}
+    public void setYear(int year){this.year=year;}
+    public void setMonth(int month){this.month=month;}
+    public void setDay(int day){this.day=day;}
+    public void setSh(int sh){this.sh=sh;}
+    public void setSm(int sm){this.sm=sm;}
+    public void setFh(int fh){this.fh=fh;}
+    public void setFm(int fm){this.fm=fm;}
     public boolean equals(Object obj){
         int year1=((Calendar)obj).getYear();
         int month1=((Calendar)obj).getMonth();
