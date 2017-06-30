@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+
 public class DailyActivity extends AppCompatActivity {
     int year,month,day;
     @Override
@@ -44,11 +45,19 @@ public class DailyActivity extends AppCompatActivity {
             finishH = timePicker2.getCurrentHour();
             finishM = timePicker2.getCurrentMinute();
         }
-        if(startH<finishH||(startH==finishH&&startM<finishM)) {
+        if(startH>finishH) {
+            TextView warnT=(TextView)findViewById(R.id.warnText);
+            warnT.setVisibility(View.VISIBLE);
+        }else if(startH==finishH&&startM>=finishM){
+            TextView warnT=(TextView)findViewById(R.id.warnText);
+            warnT.setVisibility(View.VISIBLE);
+        }else {
             Calendar calendar = new Calendar(year, month, day, startH, startM, finishH, finishM);
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("cal", calendar);
             startActivity(intent);
+            TextView warnT=(TextView)findViewById(R.id.warnText);
+            warnT.setVisibility(View.GONE);
         }
     }
 }

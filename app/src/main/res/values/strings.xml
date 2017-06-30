@@ -14,4 +14,5 @@
     <string name="goToDaily">予定を入力</string>
     <string name="message7">計算する</string>
     <string name="title">シフト管理アプリ</string>
+    <string name="warning">終了時刻は\n開始時刻より遅い時刻に設定して下さい</string>
 </resources>
